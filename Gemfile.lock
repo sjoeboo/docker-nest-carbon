@@ -1,0 +1,26 @@
+GIT
+  remote: https://github.com/ericboehs/nest_thermostat.git
+  revision: f4303b0fa7d6654a75c8c26b2f5d977d9abd1a8e
+  specs:
+    nest_thermostat (0.0.5)
+      httparty (~> 0.8.3)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    httparty (0.8.3)
+      multi_json (~> 1.0)
+      multi_xml
+    multi_json (1.12.1)
+    multi_xml (0.5.5)
+    simple-graphite (2.1.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  nest_thermostat!
+  simple-graphite
+
+BUNDLED WITH
+   1.13.0.rc.1
