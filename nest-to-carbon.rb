@@ -13,13 +13,20 @@ end
 
 status=nest.status
 
+weather_url='https://apps-weather.nest.com/weather/v1?query='
+
 shared=status['shared']
-#ap shared
+
 user_id = status['user'].keys.first
 structure_id = status['user'][user_id]['structures'][0].split('.')[1]
 wheres=status['where'][structure_id]['wheres']
 devices=status['device']
 devices.each_pair do |device,data|
+  postal_code = data['postal_code']
+  weather_query="#{weather_url}#{postal_code}"
+  odrequest = HTTParty.get(weather_query)
+  odresult = JSON.parse(odrequest.body) rescue nil
+  outdoor_temp= convert_temp(odresult[postal_code]['current']['temp_c'])
   where_id = data['where_id']
   where = wheres.find {|w| w['where_id'] == where_id }['name'].gsub(' ','_')
   current_humidity = data['current_humidity']
@@ -30,5 +37,6 @@ devices.each_pair do |device,data|
     graphite.puts "#{prefix}.humidity #{current_humidity.to_i} #{g.time_now}"
     graphite.puts "#{prefix}.target_temp #{target_temp.to_i} #{g.time_now}"
     graphite.puts "#{prefix}.current_temp #{current_temp.to_i} #{g.time_now}"
+    graphite.pust "#{prefix}.outdoot_temp #{outdoor_temp.to_o} #{g.time_now}"
   end
 end
