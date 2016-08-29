@@ -37,6 +37,6 @@ devices.each_pair do |device,data|
     graphite.puts "#{prefix}.humidity #{current_humidity.to_i} #{g.time_now}"
     graphite.puts "#{prefix}.target_temp #{target_temp.to_i} #{g.time_now}"
     graphite.puts "#{prefix}.current_temp #{current_temp.to_i} #{g.time_now}"
-    graphite.pust "#{prefix}.outdoot_temp #{outdoor_temp.to_o} #{g.time_now}"
+    graphite.puts "#{prefix}.outdoot_temp #{outdoor_temp.to_i} #{g.time_now}"
   end
 end
