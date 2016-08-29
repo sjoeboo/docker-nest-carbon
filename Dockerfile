@@ -1,8 +1,8 @@
-FROM sjoeboo/rbenv:latest
+FROM sjoeboo/rbenv:2.3.1
 
-RUN rbenv install 2.1.2
-RUN rbenv global 2.1.2
-RUN gem install bundler
+#RUN rbenv install 2.1.2
+#RUN rbenv global 2.1.2
+#RUN gem install bundler
 
 ADD . /nest
 WORKDIR /nest
